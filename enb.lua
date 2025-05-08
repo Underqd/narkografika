@@ -268,6 +268,46 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
     end
 end)
 
+local animeNotify = function()
+    local gui = Instance.new("ScreenGui")
+    local frame = Instance.new("Frame")
+    local text = Instance.new("TextLabel")
+    
+    gui.Name = "AnimeSoundNotify"
+    gui.Parent = game.CoreGui
+    gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    
+    frame.Parent = gui
+    frame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+    frame.BackgroundTransparency = 0.3
+    frame.BorderSizePixel = 0
+    frame.Position = UDim2.new(0.5, -150, 1, -60)
+    frame.Size = UDim2.new(0, 300, 0, 40)
+    frame.AnchorPoint = Vector2.new(0.5, 0.5)
+    
+    text.Parent = frame
+    text.Text = "ENB IN"
+    text.TextColor3 = Color3.fromRGB(255, 155, 155)
+    text.TextScaled = true
+    text.Font = Enum.Font.GothamBold
+    text.BackgroundTransparency = 1
+    text.Size = UDim2.new(1, 0, 1, 0)
+    
+    -- Анимация появления
+    frame:TweenPosition(UDim2.new(0.5, -150, 1, -100), "Out", "Quad", 0.5, true)
+    
+    wait(4)
+    
+    -- Анимация исчезновения
+    frame:TweenPosition(UDim2.new(0.5, -150, 1, -60), "In", "Quad", 0.5, true)
+    wait(0.5)
+    gui:Destroy()
+end
+
 setupGraphics()
+
+if setupGraphics then
+  animeNotify()
+end
 
 print("Dark Anime Style loaded! Press F5 to open settings")
